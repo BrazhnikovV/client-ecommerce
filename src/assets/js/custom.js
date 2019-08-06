@@ -384,16 +384,15 @@ $(document).ready(function()
 
   function initFeaturedSlider()
   {
-    if($('.featured_slider').length)
-    {
-      var featuredSliders = $('.featured_slider');
-      featuredSliders.each(function()
-      {
-        var featuredSlider = $(this);
-        initFSlider(featuredSlider);
-      });
-
-    }
+    window.onload = function() {
+      if($('.featured_slider').length) {
+        var featuredSliders = $('.featured_slider');
+        featuredSliders.each(function() {
+          var featuredSlider = $(this);
+          initFSlider(featuredSlider);
+        });
+      }
+    };
   }
 
   function initFSlider(fs)

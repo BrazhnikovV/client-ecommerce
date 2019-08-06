@@ -15,9 +15,9 @@ import { RpcService } from '../shared/services/rpc.service';
 export class CategoriesComponent implements OnInit {
 
   /**
-   * @var id: number - идентификатор
+   * @var categories: Category[] - массив объектов категорий
    */
-  private categories: Category[];
+  private categories: Category[] = [];
 
   /**
    * constructor
@@ -29,7 +29,6 @@ export class CategoriesComponent implements OnInit {
    */
   ngOnInit() {
     this.rpcService.makeRequest('get', 'categories/list' ).subscribe(( categories ) => {
-      console.log(categories);
       this.categories = categories;
     });
   }

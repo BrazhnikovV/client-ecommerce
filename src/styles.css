@@ -1198,8 +1198,9 @@ select option
 {
   width: 100%;
   padding-top: 68px;
-  padding-bottom: 83px;
+  /** padding-bottom: 83px; */
   overflow: hidden;
+  min-height: 671px;
 }
 .banner_background
 {
@@ -1209,7 +1210,7 @@ select option
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
   background-position: center center;
 }
 .banner_content
@@ -1280,6 +1281,7 @@ select option
 {
   padding-top: 70px;
   padding-bottom: 70px;
+  margin-top: -120px;
 }
 .char_item
 {
@@ -1623,7 +1625,7 @@ select option
 {
   display: block;
 }
-.featured_slider
+.featured_slider, .featured_slider_products_by_category
 {
   width: 100%;
 }
@@ -1632,9 +1634,18 @@ select option
   padding-left: 20px;
   padding-right: 20px;
 }
+.featured_slider_products_by_category .slick-list {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 145px;
+}
 .featured_slider .slick-track
 {
   padding-bottom: 120px;
+}
+.featured_slider_products_by_category .slick-track
+{
+  padding-bottom: 0px;
 }
 .featured_slider_item
 {
@@ -1812,7 +1823,7 @@ select option
 {
   background: rgba(14, 140, 228, 0.8);
 }
-.featured_slider .slick-dots
+.featured_slider .slick-dots, .featured_slider_products_by_category .slick-dots
 {
   position: absolute;
   left: 50%;
@@ -1823,11 +1834,11 @@ select option
   transform: translateX(-50%);
   bottom: 100px;
 }
-.featured_slider .slick-slide
+.featured_slider .slick-slide, .featured_slider_products_by_category .slick-slide
 {
   outline: none;
 }
-.featured_slider .slick-dots li
+.featured_slider .slick-dots li, .featured_slider_products_by_category .slick-dots li
 {
   display: inline-block;
   width: 15px;
@@ -1847,19 +1858,19 @@ select option
   -o-transition: all 200ms ease;
   transition: all 200ms ease;
 }
-.featured_slider .slick-dots li:hover
+.featured_slider .slick-dots li:hover, .featured_slider_products_by_category .slick-dots li:hover
 {
   background: #0e8ce4;
 }
-.featured_slider .slick-dots li.slick-active
+.featured_slider .slick-dots li.slick-active, .featured_slider_products_by_category .slick-dots li.slick-active
 {
   background: #0e8ce4;
 }
-.featured_slider .slick-dots li:last-child
+.featured_slider .slick-dots li:last-child, .featured_slider_products_by_category .slick-dots li:last-child
 {
   margin-right: 0px;
 }
-.featured_slider .slick-dots li button
+.featured_slider .slick-dots li button, .featured_slider_products_by_category .slick-dots li button
 {
   display: none;
 }
@@ -3654,3 +3665,25 @@ select option
 {
   margin-right: 0px;
 }
+
+.carousel-control-next-icon {
+
+}
+
+.carousel-control-prev-icon {
+
+}
+
+.products_by_category {
+  margin-top: -135px;
+}
+
+@media screen and (max-width: 575px) {
+  .products_by_category {
+    margin-top: -55px;
+  }
+  .banner {
+    min-height: 400px;
+  }
+}
+

@@ -1,3 +1,4 @@
+'use strict';
 import { Component, OnInit } from '@angular/core';
 import { RpcService } from '../shared/services/rpc.service';
 import { Product } from './models/product';

@@ -9,6 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
 import { DealsWeekComponent } from './deals-week/deals-week.component';
 import { ItemProductComponent } from './products/components/item-product/item-product.component';
+import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
+import { BannerComponent } from './products-by-category/components/banner/banner.component';
+import { RoutingModule } from './router/routing.module';
+import { ListComponent } from './products-by-category/components/list/list.component';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,13 +24,17 @@ import { ItemProductComponent } from './products/components/item-product/item-pr
     CategoriesComponent,
     ProductsComponent,
     DealsWeekComponent,
-    ItemProductComponent
+    ItemProductComponent,
+    ProductsByCategoryComponent,
+    BannerComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RoutingModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

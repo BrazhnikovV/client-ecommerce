@@ -4,6 +4,10 @@
  */
 export interface Category {
   /**
+   * @var id: number
+   */
+  id: number;
+  /**
    * @var name: string
    */
   name: string;

@@ -1620,6 +1620,7 @@ select option
   display: none;
   margin-left: -60px;
   margin-right: -60px;
+  height: 646px;
 }
 .product_panel.active
 {
@@ -3676,6 +3677,7 @@ select option
 
 .products_by_category {
   margin-top: -135px;
+  display: none;
 }
 
 @media screen and (max-width: 575px) {
@@ -3687,6 +3689,9 @@ select option
   }
   .characteristics {
     margin-top: -40px;
+  }
+  .product_panel {
+    min-height: 0px;
   }
 }
 

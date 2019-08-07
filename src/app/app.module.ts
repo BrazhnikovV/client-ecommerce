@@ -13,7 +13,7 @@ import { ProductsByCategoryComponent } from './products-by-category/products-by-
 import { BannerComponent } from './products-by-category/components/banner/banner.component';
 import { RoutingModule } from './router/routing.module';
 import { ListComponent } from './products-by-category/components/list/list.component';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PreloaderComponent } from './preloader/preloader.component';
 
 @NgModule({

@@ -3685,5 +3685,8 @@ select option
   .banner {
     min-height: 400px;
   }
+  .characteristics {
+    margin-top: -40px;
+  }
 }
 

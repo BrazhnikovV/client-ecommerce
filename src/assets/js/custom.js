@@ -71,7 +71,13 @@ $(document).ready(function()
   });
 
   $(document).on('click', '.cat_menu li', function(){
+    $('.products_by_category').css({'display':'none'});
+    $('#circularG.hide').css({'display':'block'});
+    setTimeout( function () {
+      $('#circularG.hide').css({'display':'none'});
+      $('.products_by_category').css({'display':'block'});
       initFeaturedSlider();
+    }, 1000 );
   });
 
   /*

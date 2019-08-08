@@ -79,8 +79,9 @@ export class HomeComponent implements OnInit {
           }
         }
       }, error => {
-        console.log(error);
         this.errors = error;
+        this.regForm.reset();
+        this.router.navigate(['/registry/error-registry'] );
       }
     );
   }

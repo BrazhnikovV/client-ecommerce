@@ -3710,6 +3710,10 @@ select option
   margin-bottom: 10px;
 }
 
+.ui-message {
+  padding: 1.429em !important;
+}
+
 @media screen and (max-width: 575px) {
   .products_by_category {
     margin-top: -0px;

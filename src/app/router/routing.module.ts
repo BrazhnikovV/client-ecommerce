@@ -20,6 +20,12 @@ const routes: Routes = [
     data: {'breadCrumbName': 'Пользователи'}
     //  canActivate:[AppGuard]
   },
+  {
+    path: 'auth',
+    loadChildren: 'src/app/modules/auth/auth.module',
+    data: {'breadCrumbName': 'Авторизация'},
+    //  canActivate:[AppGuard]
+  },
 ];
 
 /**

@@ -3692,6 +3692,18 @@ select option
   padding-top: 115px !important;
 }
 
+#auth {
+  margin-top: -25px;
+}
+
+#auth input {
+  padding-left: 10px;
+  width: 100%;
+}
+#auth > div > div {
+  margin-bottom: 15px;
+}
+
 @media screen and (max-width: 575px) {
   .products_by_category {
     margin-top: -0px;
@@ -3704,6 +3716,9 @@ select option
   }
   .product_panel {
     min-height: 0px;
+  }
+  #auth {
+    margin-top: 0px;
   }
 }
 

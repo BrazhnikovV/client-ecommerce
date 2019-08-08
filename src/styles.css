@@ -1620,7 +1620,7 @@ select option
   display: none;
   margin-left: -60px;
   margin-right: -60px;
-  height: 646px;
+  min-height: 646px;
 }
 .product_panel.active
 {
@@ -3676,13 +3676,25 @@ select option
 }
 
 .products_by_category {
-  margin-top: -135px;
-  display: none;
+  margin-top: -35px;
+  /*display: none;*/
+}
+.card-img-top {
+  width: 100px !important;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 10px;
+  margin: auto;
+}
+
+.card-body {
+  padding-top: 115px !important;
 }
 
 @media screen and (max-width: 575px) {
   .products_by_category {
-    margin-top: -55px;
+    margin-top: -0px;
   }
   .banner {
     min-height: 400px;

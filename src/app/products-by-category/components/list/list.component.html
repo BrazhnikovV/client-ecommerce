@@ -1,21 +1,35 @@
 <div class="container products_by_category">
-  <div class="row">
-    <div class="col d-flex flex-lg-row flex-column align-items-center justify-content-end">
-      <div class="featured">
-        <div class="tabbed_container">
-          <!-- Product Panel -->
-          <div class="product_panel panel active">
-            <div class="featured_slider_products_by_category slider">
-              <div *ngFor="let item of products" class="featured_slider_item">
-                <app-item-product [name]="item.name" [price]="item.price" [image]="item.images[0]['name']"></app-item-product>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-8">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <!-- Product Panel -->
+              <div *ngFor="let item of products; let i = index" [ngClass]="{'active': i == 0}" class="carousel-item">
+                <div class="row">
+                  <div *ngFor="let item1 of item" class="col-md-4">
+                    <app-item-product-by-category [name]="item1.name" [image]="item1.images[0]['name']"></app-item-product-by-category>
+                  </div>
+                </div>
               </div>
+
             </div>
-            <div class="featured_slider_dots_cover"></div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-        </div>
       </div>
     </div>
-  </div>
 </div>
 <app-preloader></app-preloader>
 

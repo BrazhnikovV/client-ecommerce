@@ -15,6 +15,7 @@ import { RoutingModule } from './router/routing.module';
 import { ListComponent } from './products-by-category/components/list/list.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PreloaderComponent } from './preloader/preloader.component';
+import { ItemProductByCategoryComponent } from './products-by-category/components/item-product-by-category/item-product-by-category.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     ProductsByCategoryComponent,
     BannerComponent,
     ListComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    ItemProductByCategoryComponent
   ],
   imports: [
     BrowserModule,

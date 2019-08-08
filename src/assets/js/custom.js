@@ -70,9 +70,10 @@ $(document).ready(function()
     initTabLines();
   });
 
-  $(document).on('click', '.cat_menu li', function(){
-    initFeaturedSlider();
-  });
+  //$(document).on('click', '.cat_menu li', function(){
+  //  $('.featured_slider_item').remove();
+  //  initFeaturedSlider();
+  //});
 
   /*
 
@@ -370,10 +371,6 @@ $(document).ready(function()
               {
                 initFSlider(slider);
               }
-              if(slider.hasClass('featured_slider_products_by_category'))
-              {
-                initFSlider(slider);
-              }
               if(slider.hasClass('arrivals_slider'))
               {
                 initASlider(slider);
@@ -399,36 +396,9 @@ $(document).ready(function()
         featuredSliders.each(function() {
           var featuredSlider = $(this);
           initFSlider(featuredSlider);
-          //$('.product_panel').css({'display':'none'});
-          setTimeout(function () {
-            //$('.product_panel').css({'display':'block'});
-          },1000);
         });
-        isFirst = false;
       }
-      initFProductsByCategorySlider();
     };
-    if ( !isFirst ) {
-      initFProductsByCategorySlider();
-    }
-  }
-
-  function initFProductsByCategorySlider() {
-    $('.products_by_category').css({'display':'none'});
-    $('#circularG.hide').css({'display':'block'});
-    setTimeout( function () {
-      $('#circularG.hide').css({'display':'none'});
-      $('.products_by_category').css({'display':'block'});
-
-      if($('.featured_slider_products_by_category').length) {
-        var featuredSliders = $('.featured_slider_products_by_category');
-        featuredSliders.each(function() {
-          var featuredSlider = $(this);
-          initFSlider(featuredSlider);
-        });
-      }
-
-    }, 1000 );
   }
 
   function initFSlider(fs)
@@ -541,14 +511,12 @@ $(document).ready(function()
       item.addEventListener('mouseenter', function()
       {
         $('.featured_slider .slick-dots').css('display', "none");
-        $('.featured_slider_products_by_category .slick-dots').css('display', "none");
       });
 
 
       item.addEventListener('mouseleave', function()
       {
         $('.featured_slider .slick-dots').css('display', "block");
-        $('.featured_slider_products_by_category .slick-dots').css('display', "block");
       });
     }
   }

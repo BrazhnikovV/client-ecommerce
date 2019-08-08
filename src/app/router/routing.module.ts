@@ -26,6 +26,12 @@ const routes: Routes = [
     data: {'breadCrumbName': 'Авторизация'},
     //  canActivate:[AppGuard]
   },
+  {
+    path: 'registry',
+    loadChildren: 'src/app/modules/registry/registry.module',
+    data: {'breadCrumbName': 'Регистрация'},
+    //  canActivate:[AppGuard]
+  },
 ];
 
 /**

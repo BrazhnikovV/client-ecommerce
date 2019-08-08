@@ -17,6 +17,11 @@ export class RpcService<T extends {}> {
   private apiUrl = 'http://localhost:8086/api/';
 
   /**
+   *  @var string apiUrl - url адрес rest api(rpc)
+   */
+  private regUrl = 'http://localhost:8086/';
+
+  /**
    *  @var string token - url адрес rest api(rpc)
    */
   private token = '8d5dd466-226c-419b-ac04-a5ccc6b42d82';
@@ -51,7 +56,7 @@ export class RpcService<T extends {}> {
    * @return Observable<any> | throwError( error )
    */
   public makePost( path: string, data: T ): Observable<any> {
-    return this.http.post<T[]>( this.apiUrl + path, data, this.getAuthHeaders() ).pipe(
+    return this.http.post<T[]>( this.regUrl + path, data ).pipe(
       map( event => event ),
       catchError(error => {
         return throwError( 'Error: obviously invalid data structure.' );

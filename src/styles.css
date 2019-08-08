@@ -3694,6 +3694,8 @@ select option
 
 #auth {
   margin-top: -25px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #auth input {
@@ -3702,6 +3704,10 @@ select option
 }
 #auth > div > div {
   margin-bottom: 15px;
+}
+
+.error-message {
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 575px) {

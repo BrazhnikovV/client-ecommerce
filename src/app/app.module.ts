@@ -16,7 +16,6 @@ import { ListComponent } from './products-by-category/components/list/list.compo
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { CardBootstrapComponent } from './products-by-category/components/card-bootstrap/card-bootstrap';
-import { RegistryComponent } from './modules/registry/registry.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { RegistryComponent } from './modules/registry/registry.component';
     BannerComponent,
     ListComponent,
     PreloaderComponent,
-    CardBootstrapComponent,
-    RegistryComponent
+    CardBootstrapComponent
   ],
   imports: [
     BrowserModule,

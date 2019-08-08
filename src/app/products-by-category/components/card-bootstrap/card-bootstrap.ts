@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-item-product-by-category',
-  templateUrl: './item-product-by-category.component.html',
-  styleUrls: ['./item-product-by-category.component.css']
+  templateUrl: './card-bootstrap.html',
+  styleUrls: ['./card-bootstrap.css']
 })
-export class ItemProductByCategoryComponent implements OnInit {
+export class CardBootstrapComponent implements OnInit {
 
   /**
    * @var name: String - имя продукта

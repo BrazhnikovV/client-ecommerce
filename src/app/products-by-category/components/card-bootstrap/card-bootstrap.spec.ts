@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemProductByCategoryComponent } from './item-product-by-category.component';
+import { ItemProductByCategoryComponent } from './card-bootstrap';
 
 describe('ItemProductByCategoryComponent', () => {
   let component: ItemProductByCategoryComponent;

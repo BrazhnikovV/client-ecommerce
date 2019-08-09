@@ -1,8 +1,9 @@
-import { Component, OnInit, QueryList, ViewChildren} from '@angular/core';
-import { RpcService} from '../../../../shared/services/rpc.service';
-import { Router} from '@angular/router';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { User} from '../../models/user';
+'use strict';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { RpcService } from '../../../../shared/services/rpc.service';
+import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../models/user';
 import { ValidatorMessageComponent } from '../../../../shared/components/validator-message/validator-message.component';
 
 /**
@@ -57,6 +58,12 @@ export class HomeComponent implements OnInit {
     this.rpcService.makePost( 'token', this.userForm.value ).subscribe(
       response => {
         console.log(response);
+        if ( response.hasOwnProperty('status') ) {
+          if ( response.status === 'OK' ) {
+            this.userForm.reset();
+            this.router.navigate(['/'] );
+          }
+        }
       }, error => {
         console.log(error);
         this.errors = error;

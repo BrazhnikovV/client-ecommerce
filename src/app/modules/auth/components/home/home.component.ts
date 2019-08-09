@@ -61,12 +61,16 @@ export class HomeComponent implements OnInit {
         if ( response.hasOwnProperty('status') ) {
           if ( response.status === 'OK' ) {
             this.userForm.reset();
+            sessionStorage.setItem('token', response.token );
+            sessionStorage.setItem('username', response.username);
             this.router.navigate(['/'] );
           }
         }
       }, error => {
         console.log(error);
         this.errors = error;
+        this.userForm.reset();
+        this.router.navigate(['/auth/error-auth'] );
       }
     );
   }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorAuthComponent } from './components/error-auth/error-auth.component';
+import {LogoutComponent} from './components/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,12 @@ const routes: Routes = [
     path: 'error-auth',
     component: ErrorAuthComponent,
     data: {'breadCrumbName': 'Ошибка авторизации'},
+    //  canActivate:[AppGuard]
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+    data: {'breadCrumbName': ''},
     //  canActivate:[AppGuard]
   }
 ];

@@ -21,17 +21,17 @@ const routes: Routes = [
     //  canActivate:[AppGuard]
   },
   {
+    path: 'registry',
+    loadChildren: 'src/app/modules/registry/registry.module',
+    data: {'breadCrumbName': 'Регистрация'},
+    //  canActivate:[AppGuard]
+  },
+  {
     path: 'auth',
     loadChildren: 'src/app/modules/auth/auth.module',
     data: {'breadCrumbName': 'Авторизация'},
     //  canActivate:[AppGuard]
   },
-  {
-    path: 'registry',
-    loadChildren: 'src/app/modules/registry/registry.module',
-    data: {'breadCrumbName': 'Регистрация'},
-    //  canActivate:[AppGuard]
-  }
 ];
 
 /**

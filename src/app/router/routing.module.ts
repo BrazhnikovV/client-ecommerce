@@ -1,8 +1,8 @@
 'use strict';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BannerComponent } from '../products-by-category/components/banner/banner.component';
-import { ListComponent } from '../products-by-category/components/list/list.component';
+import { BannerComponent } from '../catalog/components/banner/banner.component';
+import { ListComponent } from '../catalog/components/list/list.component';
 
 /**
  * @var routes: Routes - маршруты приложения

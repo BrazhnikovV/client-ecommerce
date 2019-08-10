@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+/**
+ * @classdesc - сервис для получения данных ...
+ */
 @Injectable({
   providedIn: 'root'
 })

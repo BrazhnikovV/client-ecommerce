@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RpcService } from '../../../shared/services/rpc.service';
 import { Product } from '../../../products/models/product';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 /**
  * @classdesc - ListComponent компонент список продуктов для конкретной категории товаров

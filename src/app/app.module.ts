@@ -9,13 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
 import { DealsWeekComponent } from './deals-week/deals-week.component';
 import { ItemProductComponent } from './products/components/item-product/item-product.component';
-import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
-import { BannerComponent } from './products-by-category/components/banner/banner.component';
+import { BannerComponent } from './catalog/components/banner/banner.component';
 import { RoutingModule } from './router/routing.module';
-import { ListComponent } from './products-by-category/components/list/list.component';
+import { ListComponent } from './catalog/components/list/list.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PreloaderComponent } from './preloader/preloader.component';
-import { CardBootstrapComponent } from './products-by-category/components/card-bootstrap/card-bootstrap';
+import { CardBootstrapComponent } from './catalog/components/card-bootstrap/card-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { CardBootstrapComponent } from './products-by-category/components/card-b
     ProductsComponent,
     DealsWeekComponent,
     ItemProductComponent,
-    ProductsByCategoryComponent,
     BannerComponent,
     ListComponent,
     PreloaderComponent,
@@ -38,7 +37,7 @@ import { CardBootstrapComponent } from './products-by-category/components/card-b
     HttpClientModule,
     RoutingModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

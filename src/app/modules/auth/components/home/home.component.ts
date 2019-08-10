@@ -57,7 +57,6 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     this.rpcService.makePost( 'token', this.userForm.value ).subscribe(
       response => {
-        console.log(response);
         if ( response.hasOwnProperty('status') ) {
           if ( response.status === 'OK' ) {
             this.userForm.reset();

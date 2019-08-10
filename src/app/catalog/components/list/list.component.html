@@ -13,7 +13,12 @@
               <div *ngFor="let item of products; let i = index" [ngClass]="{'active': i == 0}" class="carousel-item">
                 <div class="row">
                   <div *ngFor="let item1 of item" class="col-md-4">
-                    <app-item-product-by-category [name]="item1.name" [image]="item1.images[0]['name']"></app-item-product-by-category>
+                    <app-card-bootstrap
+                      [name]="item1.name"
+                      [description]="item1.description"
+                      [price]="item1.price"
+                      [productNumber]="item1.productNumber"
+                      [image]="item1.images[0]['name']"></app-card-bootstrap>
                   </div>
                 </div>
               </div>

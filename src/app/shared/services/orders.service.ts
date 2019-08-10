@@ -1,7 +1,8 @@
+'use strict';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Order } from '../models/order';
+// import { Order } from '../models/order';
 import { Product } from '../../products/models/product';
 
 /**
@@ -15,7 +16,7 @@ export class OrdersService {
   /**
    *  @var order: Order -
    */
-  private order: Order;
+  // private order: Order;
 
   /**
    *  @var products: Product[] -
@@ -25,6 +26,7 @@ export class OrdersService {
   /**
    * constructor
    * @param http - объект для работы с http
+   * @param cookieService -
    */
   constructor( private http: HttpClient, private cookieService: CookieService ) {}
 
@@ -33,16 +35,40 @@ export class OrdersService {
    * @param product - объект товара
    * @return void
    */
-  private addProduct ( product: Product ) {
+  public addProduct ( product: Product ) {
+    this.products = JSON.parse( this.cookieService.get( 'products' ) );
     this.products.push( product );
     this.cookieService.set( 'products', JSON.stringify( this.products ) );
   }
 
   /**
    * getAllOrders - получить все заказы
-   * @return void
+   * @return Product[]
    */
-  private getAllOrders (): Order[] {
+  public  getAllOrders (): Product[] {
     return JSON.parse( this.cookieService.get( 'products' ) );
+  }
+
+  /**
+   * getCountProducts - получить количество продуктов
+   * @return number
+   */
+  public  getCountProducts (): number {
+    return JSON.parse( this.cookieService.get( 'products' ) ).length;
+  }
+
+  /**
+   * getTotalCostProducts - получить общую стоимость заказанных продуктов
+   * @return number
+   */
+  public getTotalCostProducts(): number {
+
+    let totalCost: number;
+    this.products = JSON.parse( this.cookieService.get( 'products' ) );
+    totalCost = this.products.map( ( product ) => product.price ).reduce( function( previousValue, currentValue ) {
+      return previousValue + currentValue;
+    }, 0 );
+
+    return totalCost;
   }
 }

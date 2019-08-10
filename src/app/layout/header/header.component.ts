@@ -1,6 +1,7 @@
 'use strict';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
+import {OrdersService} from '../../shared/services/orders.service';
 
 /**
  * @classdesc - HeaderComponent компонент головная часть макета страницы
@@ -15,8 +16,10 @@ export class HeaderComponent implements OnInit {
 
   /**
    * constructor
+   * @param authService -
+   * @param orderService -
    */
-  constructor( private authService: AuthService ) { }
+  constructor( private authService: AuthService, private orderService: OrdersService) { }
 
   /**
    * ngOnInit
@@ -37,5 +40,21 @@ export class HeaderComponent implements OnInit {
    */
   private  getUserName(): string {
     return  this.authService.getUserName();
+  }
+
+  /**
+   * getCountProducts -
+   * @return number
+   */
+  private  getCountProducts(): number {
+    return  this.orderService.getCountProducts();
+  }
+
+  /**
+   * getCountProducts -
+   * @return number
+   */
+  private  getTotalCostProducts(): number {
+    return  this.orderService.getTotalCostProducts();
   }
 }

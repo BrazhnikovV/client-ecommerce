@@ -1,3 +1,4 @@
+'use strict';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './layout/app.component';
@@ -16,6 +17,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { CardBootstrapComponent } from './catalog/components/card-bootstrap/card-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
+import { PopupMessagesComponent } from './popup-messages/popup-messages.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { CookieService } from 'ngx-cookie-service';
     BannerComponent,
     ListComponent,
     PreloaderComponent,
-    CardBootstrapComponent
+    CardBootstrapComponent,
+    PopupMessagesComponent
   ],
   imports: [
     BrowserModule,

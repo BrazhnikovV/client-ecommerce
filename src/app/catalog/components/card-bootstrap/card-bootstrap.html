@@ -2,7 +2,8 @@
   <img src="/assets/images/{{image}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
-    <p class="card-text">{{description.substr(0, 100)}}</p>
-    <a href="#" (click)="onClick()" class="btn btn-primary">В корзину</a>
+    <p class="card-text">{{description.substr(0, 80)}}...</p>
+    <p class="card-text price">{{price}} &#8381;</p>
+    <a href="#" (click)="onClick($event)" class="btn btn-primary">В корзину</a>
   </div>
 </div>

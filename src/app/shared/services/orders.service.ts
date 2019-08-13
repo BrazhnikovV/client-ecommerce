@@ -54,7 +54,10 @@ export class OrdersService {
    * @return number
    */
   public  getCountProducts (): number {
-    return JSON.parse( this.cookieService.get( 'products' ) ).length;
+    if ( this.cookieService.get( 'products' ) !== ''  ) {
+      return JSON.parse( this.cookieService.get( 'products' ) ).length;
+    }
+    return 0;
   }
 
   /**
@@ -63,12 +66,15 @@ export class OrdersService {
    */
   public getTotalCostProducts(): number {
 
-    let totalCost: number;
-    this.products = JSON.parse( this.cookieService.get( 'products' ) );
-    totalCost = this.products.map( ( product ) => product.price ).reduce( function( previousValue, currentValue ) {
-      return previousValue + currentValue;
-    }, 0 );
+    if ( this.cookieService.get( 'products' ) !== ''  ) {
+      let totalCost: number;
+      this.products = JSON.parse( this.cookieService.get( 'products' ) );
+      totalCost = this.products.map( ( product ) => product.price ).reduce( function( previousValue, currentValue ) {
+        return previousValue + currentValue;
+      }, 0 );
 
-    return totalCost;
+      return totalCost;
+    }
+    return 0;
   }
 }

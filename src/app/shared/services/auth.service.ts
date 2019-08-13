@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 /**
  * @classdesc - сервис для получения данных ...
@@ -10,15 +11,10 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   /**
-   *  @var isLogged: boolean - статус аутентификации пользователя
-   */
-  private isLogged: boolean = false;
-
-  /**
    * constructor
    * @param http - объект для работы с http
    */
-  constructor( private http: HttpClient ) {}
+  constructor( private http: HttpClient, private cookieService: CookieService ) {}
 
   /**
    * logout - выполнить выход из приложения
@@ -42,5 +38,16 @@ export class AuthService {
    */
   public getUserName(): string {
     return sessionStorage.getItem('username');
+  }
+
+  /**
+   * getToken -
+   */
+  public getToken(): string {
+    const token: string = this.cookieService.get( 'token' );
+    if ( token !== ''  ) {
+      return token;
+    }
+    return '';
   }
 }

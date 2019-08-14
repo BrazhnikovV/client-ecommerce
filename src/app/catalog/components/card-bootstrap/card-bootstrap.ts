@@ -1,7 +1,7 @@
 'use strict';
 import { Component, Input, OnInit } from '@angular/core';
-import { OrdersService } from '../../../shared/services/orders.service';
 import { Product } from '../../../products/models/product';
+import { ProductsService } from '../../../shared/services/products.service';
 declare var $: any;
 
 /**
@@ -11,7 +11,7 @@ declare var $: any;
   selector: 'app-card-bootstrap',
   templateUrl: './card-bootstrap.html',
   styleUrls: ['./card-bootstrap.css'],
-  providers: [OrdersService]
+  providers: [ProductsService]
 })
 export class CardBootstrapComponent implements OnInit {
 
@@ -58,9 +58,9 @@ export class CardBootstrapComponent implements OnInit {
 
   /**
    * constructor
-   * @param orderService -
+   * @param productsService -
    */
-  constructor( private orderService: OrdersService ) { }
+  constructor( private productsService: ProductsService ) { }
 
   /**
    * ngOnInit
@@ -73,8 +73,6 @@ export class CardBootstrapComponent implements OnInit {
    * @return void
    */
   private onClick( $event: MouseEvent ) {
-    console.log('CardBootstrapComponent :: onClick()');
-
     this.product = <Product> {
       description: this.description,
       id: this.id,
@@ -83,9 +81,8 @@ export class CardBootstrapComponent implements OnInit {
       price: this.price,
       productNumber: this.productNumber
     };
-    this.orderService.addProduct( this.product );
+    this.productsService.addProduct( this.product );
     $('.toast').toast('show');
-    console.log(this.orderService.getAllOrders());
     $event.preventDefault();
   }
 }

@@ -4,6 +4,9 @@ import { HomeComponent } from '../registry/components/home/home.component';
 import { SuccessRegistryComponent } from './components/success-registry/success-registry.component';
 import { ErrorRegistryComponent } from './components/error-registry/error-registry.component';
 
+/**
+ * @var routes: Routes - маршруты модуля
+ */
 const routes: Routes = [
   {
     path: '',
@@ -25,6 +28,9 @@ const routes: Routes = [
   }
 ];
 
+/**
+ * @classdesc - RegistryRoutingModule модуль управления маршрутизацией
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

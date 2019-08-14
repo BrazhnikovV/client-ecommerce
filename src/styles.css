@@ -3676,7 +3676,7 @@ select option
 }
 
 .products_by_category {
-  margin-top: -35px;
+  margin-top: 0px;
   /*display: none;*/
 }
 .card-img-top {
@@ -3693,7 +3693,7 @@ select option
 }
 
 #auth {
-  margin-top: -25px;
+  margin-top: 0px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -3750,6 +3750,10 @@ h5.card-title {
   font-size: medium;
   color: #4e555b;
   text-decoration: line-through;
+}
+.categories-hide {
+  visibility: hidden;
+  opacity: 0;
 }
 
 @media screen and (max-width: 575px) {

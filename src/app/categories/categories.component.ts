@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from './models/category';
 import { RpcService } from '../shared/services/rpc.service';
+import {NavigationEnd, Router} from '@angular/router';
 
 /**
  * @classdesc - CategoriesComponent компонент категорий продуктов и горизонтального меню
@@ -20,9 +21,22 @@ export class CategoriesComponent implements OnInit {
   private categories: Category[] = [];
 
   /**
-   * constructor
+   * @var isHide: boolean -
    */
-  constructor( private rpcService: RpcService<Category> ) { }
+  private isHide = false;
+
+  /**
+   * constructor - конструктор
+   * @param rpcService -
+   * @param router -
+   */
+  constructor( private rpcService: RpcService<Category>, private router: Router ) {
+    this.router.events.subscribe( event => {
+      if ( event instanceof NavigationEnd ) {
+        ( event.url === '/cart' ) ? this.isHide = true : this.isHide = false;
+      }
+    });
+  }
 
   /**
    * ngOnInit

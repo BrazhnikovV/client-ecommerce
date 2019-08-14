@@ -9,7 +9,7 @@
           <div class="cat_menu_text">categories</div>
         </div>
 
-        <ul class="cat_menu">
+        <ul [ngClass]="{'categories-hide':isHide}" class="cat_menu">
           <li *ngFor="let item of categories"><a routerLink="category/{{item.id}}">{{item.name}}<i class="fas fa-chevron-right ml-auto"></i></a></li>
         </ul>
       </div>

@@ -32,6 +32,12 @@ const routes: Routes = [
     data: {'breadCrumbName': 'Авторизация'},
     //  canActivate:[AppGuard]
   },
+  {
+    path: 'cart',
+    loadChildren: 'src/app/modules/cart/cart.module',
+    data: {'breadCrumbName': 'Корзина'},
+    //  canActivate:[AppGuard]
+  }
 ];
 
 /**

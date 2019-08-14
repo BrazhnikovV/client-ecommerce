@@ -3736,13 +3736,20 @@ h5.card-title {
   height: 20px !important;;
   background-color: #0e8ce4 !important;;
 }
-
+.card-text {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
 .card-text.price {
   text-align: center;
   font-weight: bold;
   font-size: large;
   color: #df3b3b;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.old-price {
+  font-size: medium;
+  color: #4e555b;
+  text-decoration: line-through;
 }
 
 @media screen and (max-width: 575px) {

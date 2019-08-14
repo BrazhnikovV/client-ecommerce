@@ -32,7 +32,6 @@ export class ProductsService {
   public addProduct ( product: Product ) {
     if ( this.cookieService.get( 'products' ) !== ''  ) {
       this.products = JSON.parse( this.cookieService.get( 'products' ) );
-      this.products.push( product );
     }
     this.products.push( product );
     this.cookieService.set( 'products', JSON.stringify( this.products ) );
@@ -69,7 +68,9 @@ export class ProductsService {
     if ( this.cookieService.get( 'products' ) !== ''  ) {
       let totalCost: number;
       this.products = JSON.parse( this.cookieService.get( 'products' ) );
-      totalCost = this.products.map( ( product ) => product.price ).reduce( function( previousValue, currentValue ) {
+      totalCost = this.products.map( ( product ) => (
+        product.price - ( ( product.price * product.discount ) / 100 )
+      )).reduce( function( previousValue, currentValue ) {
         return previousValue + currentValue;
       }, 0 );
 

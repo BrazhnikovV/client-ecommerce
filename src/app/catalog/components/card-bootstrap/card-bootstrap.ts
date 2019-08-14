@@ -46,6 +46,12 @@ export class CardBootstrapComponent implements OnInit {
   private price: number;
 
   /**
+   * @var price: discount - скидка на продукт
+   */
+  @Input()
+  private discount: number;
+
+  /**
    *  @var product: Product -
    */
   private product: Product;
@@ -68,8 +74,8 @@ export class CardBootstrapComponent implements OnInit {
   ngOnInit() {}
 
   /**
-   * onClick
-   * @param $event: MouseEvent -
+   * onClick - слушать событие клика по кнопке в корзину
+   * @param $event: MouseEvent - объект события мыши
    * @return void
    */
   private onClick( $event: MouseEvent ) {
@@ -79,6 +85,7 @@ export class CardBootstrapComponent implements OnInit {
       images: [],
       name: this.name,
       price: this.price,
+      discount: this.discount,
       productNumber: this.productNumber
     };
     this.productsService.addProduct( this.product );

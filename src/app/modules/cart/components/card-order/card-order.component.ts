@@ -1,19 +1,18 @@
 'use strict';
-import { Component, Input, OnInit } from '@angular/core';
-import { Product } from '../../../products/models/product';
-import { ProductsService } from '../../../shared/services/products.service';
+import { Component, Input, OnInit} from '@angular/core';
+import { Product} from '../../../../products/models/product';
+import { ProductsService } from '../../../../shared/services/products.service';
 declare var $: any;
 
 /**
  * @classdesc - CardBootstrapComponent компонент карточки товара(продукта)
  */
 @Component({
-  selector: 'app-card-bootstrap',
-  templateUrl: './card-bootstrap.html',
-  styleUrls: ['./card-bootstrap.css'],
-  providers: [ProductsService]
+  selector: 'app-card-order',
+  templateUrl: './card-order.component.html',
+  styleUrls: ['./card-order.component.css']
 })
-export class CardBootstrapComponent implements OnInit {
+export class CardOrderComponent implements OnInit {
 
   /**
    * @var id: number - идентификатор товара
@@ -37,7 +36,7 @@ export class CardBootstrapComponent implements OnInit {
    * @var image: String - название изображения
    */
   @Input()
-  private image: [];
+  private image: String;
 
   /**
    * @var price: number - стоимость продукта
@@ -69,6 +68,16 @@ export class CardBootstrapComponent implements OnInit {
   private productNumber: String;
 
   /**
+   * @var countProducts: number -
+   */
+  private countProducts = 1;
+
+  /**
+   * @var totalCost: number -
+   */
+  private totalCost: number;
+
+  /**
    * constructor
    * @param productsService -
    */
@@ -77,7 +86,9 @@ export class CardBootstrapComponent implements OnInit {
   /**
    * ngOnInit
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.totalCost = this.price;
+  }
 
   /**
    * onClick - слушать событие клика по кнопке в корзину
@@ -88,7 +99,7 @@ export class CardBootstrapComponent implements OnInit {
     this.product = <Product> {
       description: this.description,
       id: this.id,
-      images: this.image,
+      images: [],
       name: this.name,
       price: this.price,
       discount: this.discount,
@@ -97,6 +108,34 @@ export class CardBootstrapComponent implements OnInit {
     };
     this.productsService.addProduct( this.product );
     $('.toast').toast('show');
+    $event.preventDefault();
+  }
+
+  /**
+   * onMinusClick - слушать событие клика по кнопке уменьшить количество товаров
+   * @param $event: MouseEvent - объект события мыши
+   * @return void
+   */
+  private onMinusClick( $event: MouseEvent ) {
+    if ( this.countProducts === 1 ) {
+      return false;
+    }
+    this.countProducts --;
+    this.totalCost = this.price * this.countProducts;
+    $event.preventDefault();
+  }
+
+  /**
+   * onPlusClick - слушать событие клика по кнопке увеличить количество товаров
+   * @param $event: MouseEvent - объект события мыши
+   * @return void
+   */
+  private onPlusClick($event: MouseEvent) {
+    if ( this.countProducts >= this.amount ) {
+      return false;
+    }
+    this.countProducts ++;
+    this.totalCost = this.price * this.countProducts;
     $event.preventDefault();
   }
 }

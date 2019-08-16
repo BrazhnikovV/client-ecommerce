@@ -38,10 +38,10 @@ export class ProductsService {
   }
 
   /**
-   * getAllOrders - получить все заказы
+   * getAllProducts - получить все продукты
    * @return Product[]
    */
-  public  getAllOrders (): Product[] {
+  public  getAllProducts(): Product[] {
     if ( this.cookieService.get( 'products' ) !== ''  ) {
       return JSON.parse( this.cookieService.get( 'products' ) );
     }

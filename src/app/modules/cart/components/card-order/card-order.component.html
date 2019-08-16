@@ -1,0 +1,13 @@
+<div class="card">
+  <a href="#" class="btn btn-danger delete-order"><b>х</b></a>
+  <img src="/assets/images/{{image}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{name}}</h5>
+    <p class="card-text">{{description.substr(0, 80)}}...</p>
+    <p *ngIf="discount !== 0" class="card-text price">{{totalCost - ( totalCost * discount / 100 )}}&#8381; <span class="old-price">{{totalCost}}&#8381;</span></p>
+    <p *ngIf="discount === 0" class="card-text price">{{totalCost}} &#8381;</p>
+    <button (click)="onMinusClick($event)" type="button" class="btn btn-secondary">-</button>
+    <button type="button" disabled class="btn btn-primary">{{countProducts}}</button>
+    <button (click)="onPlusClick($event)" type="button" class="btn btn-secondary">+</button>
+  </div>
+</div>

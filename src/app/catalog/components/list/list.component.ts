@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RpcService } from '../../../shared/services/rpc.service';
 import { Product } from '../../../products/models/product';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ArrayHelper } from '../../../utils/ArrayHelper';
 
 /**
  * @classdesc - ListComponent компонент список продуктов для конкретной категории товаров
@@ -19,9 +20,9 @@ export class ListComponent implements OnInit {
   private categoryId: number;
 
   /**
-   * @var products: Product[] - массив объектов продуктов
+   * @var products: Product[][] - массив массивов объектов продуктов
    */
-  private products: any;
+  private products: Product[][];
 
   /**
    * constructor
@@ -49,22 +50,8 @@ export class ListComponent implements OnInit {
    */
   private makeRequest () {
     this.rpcService.makeRequest('get', 'products/list-by-category-id/' + this.categoryId ).subscribe(( products ) => {
-      this.products = this.breakIntoPieces( products );
+      this.products = ArrayHelper.breakIntoPieces( products );
       console.log(this.products);
     });
-  }
-
-  private breakIntoPieces ( arr: [] ) {
-    const SIZE = 3;
-
-    const res = arr.reduce((p, c) => {
-      if (p[p.length - 1].length === SIZE) {
-        p.push([]);
-      }
-
-      p[p.length - 1].push(c);
-      return p;
-    }, [[]]);
-    return res;
   }
 }

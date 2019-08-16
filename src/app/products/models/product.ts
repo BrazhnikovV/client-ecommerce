@@ -29,6 +29,11 @@ export interface Product {
   discount: number;
 
   /**
+   * @var amount: number
+   */
+  amount: number;
+
+  /**
    * @var product_number: string
    */
   productNumber: string;

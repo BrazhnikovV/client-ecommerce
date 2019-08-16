@@ -4,7 +4,7 @@ import { ValidatorMessageComponent } from '../../../../shared/components/validat
 import { UserRegistry } from '../../models/user-registry';
 import { RpcService } from '../../../../shared/services/rpc.service';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 
 /**
  * @classdesc - HomeComponent родительский компонент функционального модуля
@@ -48,10 +48,19 @@ export class HomeComponent implements OnInit {
       Validators.minLength(4 ),
       Validators.maxLength(32 )
     ]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.minLength(11 ),
+      Validators.maxLength(11 )
+    ]),
     password: new FormControl('' , [
       Validators.required,
       Validators.minLength(4 ),
       Validators.maxLength(1024 )
+    ]),
+    confirmPassword: new FormControl('' , [
+      Validators.required,
+      this.confirmPasswordValidator
     ]),
     firstName: new FormControl('', [
       Validators.required,
@@ -98,4 +107,19 @@ export class HomeComponent implements OnInit {
    * ngOnInit
    */
   ngOnInit() {}
+
+  /**
+   * confirmPasswordValidator -
+   * @param control -
+   * @return { [key: string]: boolean } | null
+   */
+  private confirmPasswordValidator( control: AbstractControl ): { [key: string]: boolean } | null {
+    const parent = control.parent;
+    if ( control.parent !== undefined ) {
+      if ( control.value !== parent.get( 'password' ).value ) {
+        return { 'confirmPassword': false };
+      }
+    }
+    return null;
+  }
 }

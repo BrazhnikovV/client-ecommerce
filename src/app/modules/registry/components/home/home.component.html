@@ -5,6 +5,7 @@
       <div class="row">
         <div class="col-md-6">
           <app-validator-message [field]="regForm.get('username')"></app-validator-message>
+          <label class="required">Имя пользователя<span class="required">*</span></label>
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-user"></i></span>
             <input (keyup)="inputChange()" type="text" pInputText placeholder="username" formControlName="username">
@@ -12,6 +13,7 @@
         </div>
         <div class="col-md-6">
           <app-validator-message [field]="regForm.get('email')"></app-validator-message>
+          <label class="required">Email<span class="required">*</span></label>
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-user"></i></span>
             <input (keyup)="inputChange()" type="text" pInputText placeholder="email" formControlName="email">
@@ -21,15 +23,25 @@
       <div class="row">
         <div class="col-md-6">
           <app-validator-message [field]="regForm.get('password')"></app-validator-message>
+          <label class="Пароль">Пароль<span class="required">*</span></label>
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-envelope"></i></span>
             <input (keyup)="inputChange()" type="text" pInputText placeholder="password" formControlName="password">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <app-validator-message [field]="regForm.get('confirmPassword')"></app-validator-message>
+          <label class="Пароль">Повоторите пароль<span class="required">*</span></label>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-envelope"></i></span>
+            <input (keyup)="inputChange()" type="text" pInputText placeholder="confirmPassword" formControlName="confirmPassword">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
           <app-validator-message [field]="regForm.get('firstName')"></app-validator-message>
+          <label class="required">Имя<span class="required">*</span></label>
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-user"></i></span>
             <input (keyup)="inputChange()" type="text" pInputText placeholder="firstName" formControlName="firstName">
@@ -37,9 +49,20 @@
         </div>
         <div class="col-md-6">
           <app-validator-message [field]="regForm.get('lastName')"></app-validator-message>
+          <label class="required">Фамилия<span class="required">*</span></label>
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-user"></i></span>
             <input (keyup)="inputChange()" type="text" pInputText placeholder="lastName" formControlName="lastName">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <app-validator-message [field]="regForm.get('phone')"></app-validator-message>
+          <label class="required">Номер телефона<span class="required">*</span></label>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-pw pi-user"></i></span>
+            <input (keyup)="inputChange()" type="text" pInputText placeholder="Phone" formControlName="phone">
           </div>
         </div>
       </div>

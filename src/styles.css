@@ -3711,7 +3711,7 @@ select option
 }
 
 .ui-message {
-  padding: 1.429em !important;
+  padding: 0.429em !important;
 }
 
 .carousel-control-prev {
@@ -3766,7 +3766,23 @@ h5.card-title {
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 999;
+  padding: 1px 8px !important;
+  z-index: 9;
+}
+label {
+  margin-bottom: 0px !important;
+  color: #8b9082;
+  font-size: 11pt;
+}
+span.required {
+  color: red;
+  margin-left: 2px;
+}
+.card-body .btn {
+  margin-right: 2px !important;
+}
+.form-order {
+  margin-top: 5px;
 }
 
 @media screen and (max-width: 575px) {

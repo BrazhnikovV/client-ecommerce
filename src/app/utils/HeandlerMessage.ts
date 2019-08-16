@@ -36,8 +36,8 @@ export class HeandlerMessage {
     if ( field.errors.hasOwnProperty( 'max' ) ) {
       this.msgCnf['max'] = ` Max number length ${ field.errors.max.max }`;
     }
-    if ( field.errors.hasOwnProperty( 'confirmpass' ) ) {
-      this.msgCnf['confirmpass'] = ` ${ field.errors.confirmpass }`;
+    if ( field.errors.hasOwnProperty( 'confirmPassword' ) ) {
+      this.msgCnf['confirmPassword'] = ` Not matches password.`;
     }
 
     if ( field.errors.hasOwnProperty( 'pattern' ) ) {

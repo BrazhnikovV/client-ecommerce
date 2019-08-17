@@ -19,7 +19,7 @@
                   [discount]="item.discount"
                   [amount]="item.amount"
                   [productNumber]="item.productNumber"
-                  [image]="item.images"></app-card-order>
+                  [image]="item.images[0]['name']"></app-card-order>
               </div>
             </div>
           </div>
@@ -36,20 +36,14 @@
     </div>
     <div class="col-md-4 text-left">
       <h2>Оформление заказа</h2>
-      <p-message severity="error" text="Для проведения заказа необходимо авторизоваться."></p-message>
+      <p-message *ngIf="!authService.getIsLogged()" severity="error" text="Для проведения заказа необходимо авторизоваться."></p-message>
       <form  [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="form-order">
         <div class="form-group row">
           <div class="col-md-12 text-left">
-            <span class="glyphicon glyphicon-envelope"></span>
-            <label class="required">Email <span class="required">*</span></label>
-            <input disabled class="form-control" placeholder="example@mail.ru" formControlName="orderStatus" (keyup)="inputChange()" type="text" pInputText>
-            <span class="help-block text-left"><span class="glyphicon glyphicon-info-sign"></span>Ваш <b>email</b> адрес.</span>
-          </div>
-          <div class="col-md-12 text-left">
             <span class="glyphicon glyphicon-earphone"></span>
-            <label class="required">Phone <span class="required">*</span></label>
-            <input disabled class="form-control phone" placeholder="+7 (909) 878-87-88" formControlName="address" pInputText type="text">
-            <span class="help-block text-left"><span class="glyphicon glyphicon-info-sign"></span>Ваш телефонный номер.</span>
+            <label class="required">Адрес доставки <span class="required">*</span></label>
+            <textarea class="form-control phone" placeholder="Voronezh 60 Army Street" formControlName="address" pInputTextarea></textarea>
+            <span class="help-block text-left"><span class="glyphicon glyphicon-info-sign"></span>Адрес по которому будет доставлен товар.</span>
           </div>
         </div>
         <div class="text-left">

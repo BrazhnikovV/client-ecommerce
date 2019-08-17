@@ -5,9 +5,10 @@ import { ProductsService } from '../../../../shared/services/products.service';
 import { ArrayHelper } from '../../../../utils/ArrayHelper';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidatorMessageComponent } from '../../../../shared/components/validator-message/validator-message.component';
-import {RpcService} from '../../../../shared/services/rpc.service';
-import {User} from '../../../auth/models/user';
-import {Router} from '@angular/router';
+import { RpcService } from '../../../../shared/services/rpc.service';
+import { User } from '../../../auth/models/user';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../shared/services/auth.service';
 
 /**
  * @classdesc - HomeComponent родительский компонент функционального модуля
@@ -15,7 +16,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [RpcService, AuthService]
 })
 export class HomeComponent implements OnInit {
 
@@ -39,7 +41,11 @@ export class HomeComponent implements OnInit {
   /**
    * constructor - конструктор
    */
-  constructor( private productsService: ProductsService, private rpcService: RpcService<User>, private router: Router ) { }
+  constructor(
+    private productsService: ProductsService,
+    private rpcService: RpcService<User>,
+    private router: Router,
+    private authService: AuthService ) { }
 
   /**
    *  @var userForm: FormGroup - группа валидируемых полей
@@ -67,7 +73,11 @@ export class HomeComponent implements OnInit {
    * ngOnInit
    */
   ngOnInit() {
-    this.products = ArrayHelper.breakIntoPieces( this.productsService.getAllProducts() );
+    const products: Product[] = this.productsService.getAllProducts();
+    this.products = ArrayHelper.breakIntoPieces( products );
+    this.orderForm.get( 'orderStatus' ).setValue( 'PENDING' );
+    this.orderForm.get( 'accountNumber' ).setValue( this.authService.getAccountNumber()  );
+    this.orderForm.get( 'products' ).setValue( products );
     console.log(this.productsService.getAllProducts());
   }
 
@@ -84,7 +94,7 @@ export class HomeComponent implements OnInit {
    * @return void
    */
   onSubmit() {
-    this.rpcService.makePost( 'token', this.orderForm.value ).subscribe(
+    this.rpcService.makePost( 'orders/create', this.orderForm.value ).subscribe(
       response => {
         if ( response.hasOwnProperty('status') ) {
           if ( response.status === 'OK' ) {

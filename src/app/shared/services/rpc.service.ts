@@ -56,6 +56,21 @@ export class RpcService<T extends {}> {
    * @return Observable<any> | throwError( error )
    */
   public makePost( path: string, data: T ): Observable<any> {
+    return this.http.post<T[]>( this.apiUrl + path, data, this.getAuthHeaders() ).pipe(
+      map( event => event ),
+      catchError(error => {
+        return throwError( 'Error: obviously invalid data structure.' );
+      })
+    );
+  }
+
+  /**
+   * makePostAuthOrReg -
+   * @param path   - путь определяющий сущность и операцию выполняемою на дней
+   * @param data   - набор данных, которые необходимо передать серверу
+   * @return Observable<any> | throwError( error )
+   */
+  public makePostAuthOrReg( path: string, data: T ): Observable<any> {
     return this.http.post<T[]>( this.regUrl + path, data ).pipe(
       map( event => event ),
       catchError(error => {

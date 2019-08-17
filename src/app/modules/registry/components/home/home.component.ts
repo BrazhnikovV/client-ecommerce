@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
    * @return void
    */
   onSubmit() {
-    this.rpcService.makePost( 'registry', this.regForm.value ).subscribe(
+    this.rpcService.makePostAuthOrReg( 'registry', this.regForm.value ).subscribe(
       response => {
         if ( response.hasOwnProperty('status') ) {
           if ( response.status === 'OK' ) {

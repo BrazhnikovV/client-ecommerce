@@ -55,13 +55,15 @@ export class HomeComponent implements OnInit {
    * @return void
    */
   onSubmit() {
-    this.rpcService.makePost( 'token', this.userForm.value ).subscribe(
+    this.rpcService.makePostAuthOrReg( 'token', this.userForm.value ).subscribe(
       response => {
         if ( response.hasOwnProperty('status') ) {
           if ( response.status === 'OK' ) {
             this.userForm.reset();
-            sessionStorage.setItem('token', response.token );
-            sessionStorage.setItem('username', response.username);
+            sessionStorage.setItem( 'token', response.token );
+            sessionStorage.setItem( 'phone', response.phone );
+            sessionStorage.setItem( 'accountNumber', response.accountNumber );
+            sessionStorage.setItem( 'username', response.username );
             this.router.navigate(['/'] );
           }
         }

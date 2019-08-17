@@ -41,6 +41,14 @@ export class AuthService {
   }
 
   /**
+   * getAccountNumber -
+   * @return string
+   */
+  public getAccountNumber(): string {
+    return sessionStorage.getItem('accountNumber');
+  }
+
+  /**
    * getToken -
    */
   public getToken(): string {

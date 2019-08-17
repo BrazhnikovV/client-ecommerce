@@ -2,6 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../../products/models/product';
 import { ProductsService } from '../../../shared/services/products.service';
+import {Category} from '../../../categories/models/category';
 declare var $: any;
 
 /**
@@ -58,15 +59,21 @@ export class CardBootstrapComponent implements OnInit {
   private amount: number;
 
   /**
-   *  @var product: Product -
-   */
-  private product: Product;
-
-  /**
    * @var productNumber: String -
    */
   @Input()
   private productNumber: String;
+
+  /**
+   * @var category: Category -
+   */
+  @Input()
+  private category: Category;
+
+  /**
+   *  @var product: Product -
+   */
+  private product: Product;
 
   /**
    * constructor
@@ -85,6 +92,7 @@ export class CardBootstrapComponent implements OnInit {
    * @return void
    */
   private onClick( $event: MouseEvent ) {
+    // this.image.map( image => delete image['id'] );
     this.product = <Product> {
       description: this.description,
       id: this.id,
@@ -93,7 +101,8 @@ export class CardBootstrapComponent implements OnInit {
       price: this.price,
       discount: this.discount,
       amount: this.amount,
-      productNumber: this.productNumber
+      productNumber: this.productNumber,
+      category: this.category
     };
     this.productsService.addProduct( this.product );
     $('.toast').toast('show');

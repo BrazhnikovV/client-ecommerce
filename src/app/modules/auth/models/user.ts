@@ -33,4 +33,9 @@ export interface User {
    * @var email: string
    */
   email: string;
+
+  /**
+   * @var phone: string
+   */
+  phone: string;
 }

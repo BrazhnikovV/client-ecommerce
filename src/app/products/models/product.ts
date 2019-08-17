@@ -1,6 +1,8 @@
 /**
  * @description - Product интерфейс модели продукт
  */
+import {Category} from '../../categories/models/category';
+
 export interface Product {
 
   /**
@@ -42,4 +44,9 @@ export interface Product {
    * @var images: []
    */
   images: [];
+
+  /**
+   * @var category: Category
+   */
+  category: Category;
 }

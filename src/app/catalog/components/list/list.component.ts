@@ -51,7 +51,6 @@ export class ListComponent implements OnInit {
   private makeRequest () {
     this.rpcService.makeRequest('get', 'products/list-by-category-id/' + this.categoryId ).subscribe(( products ) => {
       this.products = ArrayHelper.breakIntoPieces( products );
-      console.log(this.products);
     });
   }
 }

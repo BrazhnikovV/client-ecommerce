@@ -1,3 +1,4 @@
+'use strict';
 import { Injectable } from '@angular/core';
 import { Product } from '../../products/models/product';
 import { HttpClient } from '@angular/common/http';
@@ -13,14 +14,14 @@ import { CookieService } from 'ngx-cookie-service';
 export class ProductsService {
 
   /**
-   *  @var products: Product[] -
+   *  @var products: Product[] - массив продуктов(товаров)
    */
   private products: Product[] = [];
 
   /**
-   * constructor
+   * constructor - конструктор
    * @param http - объект для работы с http
-   * @param cookieService -
+   * @param cookieService - сервис для работы с куками
    */
   constructor( private http: HttpClient, private cookieService: CookieService ) { }
 
@@ -52,7 +53,7 @@ export class ProductsService {
    * getCountProducts - получить количество продуктов
    * @return number
    */
-  public  getCountProducts (): number {
+  public  getCountProducts(): number {
     if ( this.cookieService.get( 'products' ) !== ''  ) {
       return JSON.parse( this.cookieService.get( 'products' ) ).length;
     }
@@ -77,5 +78,30 @@ export class ProductsService {
       return totalCost;
     }
     return 0;
+  }
+
+  /**
+   * getTotalCostProducts - получить общую стоимость заказанных продуктов
+   * @param productId - идентификатор продукта(товара)
+   * @return void
+   */
+  public deleteProductByID( productId: number ): void {
+
+    if ( this.cookieService.get( 'products' ) !== ''  ) {
+      this.products = JSON.parse( this.cookieService.get( 'products' ) );
+      this.products = this.products.filter( ( product ) => product.id !== productId );
+      this.cookieService.set( 'products', JSON.stringify( this.products ) );
+    }
+  }
+
+  /**
+   * deleteAllProducts - удалить все продукты из корзины
+   * @return void
+   */
+  public deleteAllProducts(): void {
+    if ( this.cookieService.get( 'products' ) !== ''  ) {
+      this.products = [];
+      this.cookieService.set( 'products', JSON.stringify( this.products ) );
+    }
   }
 }

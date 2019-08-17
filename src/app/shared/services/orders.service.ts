@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Order } from '../models/order';
+import { Order } from '../../modules/cart/models/order';
 
 /**
  * @classdesc - сервис для получения данных ...
@@ -15,7 +15,7 @@ export class OrdersService {
   /**
    *  @var order: Order -
    */
-  private order: Order;
+  private order: Order
 
   /**
    * constructor

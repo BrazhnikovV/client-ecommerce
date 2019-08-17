@@ -11,7 +11,7 @@
           <div *ngFor="let productBlock of products; let i = index" [ngClass]="{'active': i == 0}" class="carousel-item">
             <div class="row">
               <div *ngFor="let item of productBlock" class="col-md-4">
-                <app-card-order
+                <app-card-order (childEvent)="deleteProductByID($event)"
                   [id]="item.id"
                   [name]="item.name"
                   [description]="item.description"
@@ -54,3 +54,12 @@
     </div>
   </div>
 </div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<p-dialog header="Предупреждение!" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+          [maximizable]="true" [baseZIndex]="10000">
+  <p>Ваш заказ прнинят, он находится в стадии сборки.</p>
+  <p>Сейчас Вы будете перенаправлены на гланоу станицу.</p>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Ok"></button>
+  </p-footer>
+</p-dialog>

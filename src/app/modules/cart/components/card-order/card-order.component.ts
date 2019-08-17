@@ -1,6 +1,5 @@
 'use strict';
-import { Component, Input, OnInit} from '@angular/core';
-import { Product} from '../../../../products/models/product';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../../../../shared/services/products.service';
 declare var $: any;
 
@@ -13,6 +12,12 @@ declare var $: any;
   styleUrls: ['./card-order.component.css']
 })
 export class CardOrderComponent implements OnInit {
+
+  /**
+   * @var childEvent: EventEmitter<string> - объект события для отправки родительскому компоненту
+   */
+  @Output()
+  private childEvent = new EventEmitter<string>();
 
   /**
    * @var id: number - идентификатор товара
@@ -57,11 +62,6 @@ export class CardOrderComponent implements OnInit {
   private amount: number;
 
   /**
-   *  @var product: Product -
-   */
-  private product: Product;
-
-  /**
    * @var productNumber: String -
    */
   @Input()
@@ -91,36 +91,16 @@ export class CardOrderComponent implements OnInit {
   }
 
   /**
-   * onClick - слушать событие клика по кнопке в корзину
-   * @param $event: MouseEvent - объект события мыши
-   * @return void
-   */
-  private onClick( $event: MouseEvent ) {
-    this.product = <Product> {
-      description: this.description,
-      id: this.id,
-      images: [],
-      name: this.name,
-      price: this.price,
-      discount: this.discount,
-      amount: this.amount,
-      productNumber: this.productNumber
-    };
-    this.productsService.addProduct( this.product );
-    $('.toast').toast('show');
-    $event.preventDefault();
-  }
-
-  /**
    * onMinusClick - слушать событие клика по кнопке уменьшить количество товаров
    * @param $event: MouseEvent - объект события мыши
    * @return void
    */
   private onMinusClick( $event: MouseEvent ) {
-    if ( this.countProducts === 1 ) {
+    if ( this.countProducts <= 1 ) {
       return false;
     }
-    this.countProducts --;
+    this.countProducts--;
+    this.amount++;
     this.totalCost = this.price * this.countProducts;
     $event.preventDefault();
   }
@@ -131,11 +111,22 @@ export class CardOrderComponent implements OnInit {
    * @return void
    */
   private onPlusClick($event: MouseEvent) {
-    if ( this.countProducts >= this.amount ) {
+    if ( this.amount <= 1 ) {
       return false;
     }
-    this.countProducts ++;
+    this.countProducts++;
+    this.amount--;
     this.totalCost = this.price * this.countProducts;
+    $event.preventDefault();
+  }
+
+  /**
+   * onDeleteClick - слушать событие клика по кнопке адалить товар из корзины
+   * @param $event: MouseEvent - объект события мыши
+   * @return void
+   */
+  private onDeleteClick($event: MouseEvent) {
+    this.childEvent.emit( this.id + '' );
     $event.preventDefault();
   }
 }

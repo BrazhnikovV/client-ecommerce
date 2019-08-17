@@ -18,6 +18,7 @@ import { PreloaderComponent } from './preloader/preloader.component';
 import { CardBootstrapComponent } from './catalog/components/card-bootstrap/card-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 import { PopupMessagesComponent } from './popup-messages/popup-messages.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PopupMessagesComponent } from './popup-messages/popup-messages.componen
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RoutingModule
   ],

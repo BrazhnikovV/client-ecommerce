@@ -1,14 +1,15 @@
 'use strict';
-import {Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import { Product } from '../../../../products/models/product';
 import { ProductsService } from '../../../../shared/services/products.service';
 import { ArrayHelper } from '../../../../utils/ArrayHelper';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidatorMessageComponent } from '../../../../shared/components/validator-message/validator-message.component';
 import { RpcService } from '../../../../shared/services/rpc.service';
-import { User } from '../../../auth/models/user';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../shared/services/auth.service';
+import { ConfirmationService } from 'primeng/api';
+import { Order } from '../../models/order';
 
 /**
  * @classdesc - HomeComponent родительский компонент функционального модуля
@@ -17,9 +18,15 @@ import { AuthService } from '../../../../shared/services/auth.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [RpcService, AuthService]
+  providers: [ConfirmationService]
 })
 export class HomeComponent implements OnInit {
+
+  /**
+   * @var childEvent: EventEmitter<string>
+   */
+  @Output()
+  private childEvent = new EventEmitter<string>();
 
   /**
    * @var viewChildren: QueryList<ValidatorMessageComponent> - список компонентов
@@ -39,13 +46,19 @@ export class HomeComponent implements OnInit {
   private products: Product[];
 
   /**
+   *  @var display: boolean -
+   */
+  private display: boolean;
+
+  /**
    * constructor - конструктор
    */
   constructor(
     private productsService: ProductsService,
-    private rpcService: RpcService<User>,
+    private rpcService: RpcService<Order>,
     private router: Router,
-    private authService: AuthService ) { }
+    private authService: AuthService,
+    private confirmationService: ConfirmationService) { }
 
   /**
    *  @var userForm: FormGroup - группа валидируемых полей
@@ -78,7 +91,6 @@ export class HomeComponent implements OnInit {
     this.orderForm.get( 'orderStatus' ).setValue( 'PENDING' );
     this.orderForm.get( 'accountNumber' ).setValue( this.authService.getAccountNumber()  );
     this.orderForm.get( 'products' ).setValue( products );
-    console.log(this.productsService.getAllProducts());
   }
 
   /**
@@ -96,11 +108,13 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     this.rpcService.makePost( 'orders/create', this.orderForm.value ).subscribe(
       response => {
-        if ( response.hasOwnProperty('status') ) {
-          if ( response.status === 'OK' ) {
+        if ( response.orderStatus === 'PENDING' ) {
             this.orderForm.reset();
-            // this.router.navigate(['/'] );
-          }
+            this.display = true;
+            setTimeout( () => {
+              this.deleteAllProducts();
+              this.router.navigate(['/'] );
+            }, 3000);
         }
       }, error => {
         console.log(error);
@@ -109,5 +123,38 @@ export class HomeComponent implements OnInit {
         // this.router.navigate(['/auth/error-auth'] );
       }
     );
+  }
+
+  /**
+   * confirm - сообщить об успешном выполнении заказа
+   * @param productId - идентификатор товара(продукта)
+   * @return void
+   */
+  private confirm( productId: number ): void {
+    this.confirmationService.confirm({
+      message: 'Вы действительно хотите удалить товар из корзины?',
+      accept: () => {
+        this.productsService.deleteProductByID( productId );
+        this.products = this.productsService.getAllProducts();
+      }
+    });
+  }
+
+  /**
+   * deleteProductByID - удалить товар(продукт) из корзина
+   * @param $event - событие EventEmitter дочернего компонента
+   * @return void
+   */
+  private deleteProductByID( $event: string ): void {
+    this.confirm( parseInt($event, 10) );
+  }
+
+  /**
+   * deleteAllProducts - очистить корзину
+   * @return void
+   */
+  private deleteAllProducts(): void {
+    this.productsService.deleteAllProducts();
+    this.products = this.productsService.getAllProducts();
   }
 }
